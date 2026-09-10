@@ -3,12 +3,15 @@ const express = require("express");
 
 const router = express.Router();
 
+const {
+    searchAcademicSources
+} = require("../services/academicSearch");
 
 // =================================
 // DAWATI RESEARCH SEARCH API
 // =================================
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
 
     console.log("Received body:");
     console.log(req.body);
@@ -72,42 +75,60 @@ router.post("/", (req, res) => {
     // TEMPORARY RESPONSE
     // REAL ACADEMIC SEARCH COMES NEXT
     // =================================
+// =================================
+// CREATE RESEARCH OBJECT
+// =================================
 
-    res.json({
+const research = {
 
-        success: true,
+    title,
+    idea,
+    fieldOfStudy,
+    levelOfStudy,
 
-        message:
-            "DAWATI received the research project",
+    objective1,
+    objective2,
+    objective3,
+    objective4
 
-        research: {
+};
 
-            title,
 
-            idea,
+// =================================
+// SEARCH FOR ACADEMIC SOURCES
+// =================================
 
-            fieldOfStudy,
+const sources =
+        await searchAcademicSources(
+                research
+        );
 
-            levelOfStudy,
 
-            objectives: [
+// =================================
+// RESPONSE
+// =================================
 
-                objective1,
+res.json({
 
-                objective2,
+    success: true,
 
-                objective3,
+    message:
+        "Academic sources found successfully",
 
-                objective4
-
-            ]
-
-        }
-
-    });
+    sources: sources
 
 });
 
 
-module.exports = router;
+// =================================
+// CLOSE ROUTE
+// =================================
 
+});
+
+
+// =================================
+// EXPORT ROUTER
+// =================================
+
+module.exports = router;
