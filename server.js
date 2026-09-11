@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const searchRoutes = require("./routes/search");
+const analyzeRoutes = require("./routes/analyze");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 // ================================
 
 app.use("/api/search", searchRoutes);
+app.use("/api/analyze", analyzeRoutes);
 
 
 // ================================
