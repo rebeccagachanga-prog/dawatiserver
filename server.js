@@ -6,6 +6,8 @@ require("dotenv").config();
 
 const searchRoutes = require("./routes/search");
 const analyzeRoutes = require("./routes/analyze");
+const literatureReviewRoutes =
+    require("./routes/literatureReview");
 
 const app = express();
 
@@ -25,6 +27,10 @@ app.use(express.json());
 
 app.use("/api/search", searchRoutes);
 app.use("/api/analyze", analyzeRoutes);
+app.use(
+    "/api/literature-review",
+    literatureReviewRoutes
+);
 
 
 // ================================
