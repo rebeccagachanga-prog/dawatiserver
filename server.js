@@ -8,6 +8,8 @@ const searchRoutes = require("./routes/search");
 const analyzeRoutes = require("./routes/analyze");
 const literatureReviewRoutes =
     require("./routes/literatureReview");
+const testAIRoutes =
+        require("./routes/testAI");
 
 const app = express();
 
@@ -30,6 +32,10 @@ app.use("/api/analyze", analyzeRoutes);
 app.use(
     "/api/literature-review",
     literatureReviewRoutes
+);
+app.use(
+        "/api/test-ai",
+        testAIRoutes
 );
 
 

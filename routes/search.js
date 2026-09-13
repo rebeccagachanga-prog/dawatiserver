@@ -15,66 +15,57 @@ router.post("/", async (req, res) => {
 
     console.log("Received body:");
     console.log(req.body);
-
-    const {
-        title,
-        idea,
-        fieldOfStudy,
-        levelOfStudy,
-        objective1,
-        objective2,
-        objective3,
-        objective4
-    } = req.body || {};
-
-    // =================================
-    // VALIDATE RESEARCH INFORMATION
-    // =================================
-
-    if (!title || !idea || !fieldOfStudy) {
-
-        return res.status(400).json({
-
-            success: false,
-
-            message:
-                "Research title, idea and field of study are required"
-
-        });
-
-    }
+    
+const {
+    title,
+    idea,
+    fieldOfStudy,
+    levelOfStudy,
+    objective1,
+    objective2,
+    objective3,
+    objective4,
+    searchText
+} = req.body || {};
 
 
-    // =================================
-    // DISPLAY REQUEST ON SERVER
-    // =================================
+// =================================
+// VALIDATE RESEARCH INFORMATION
+// =================================
 
-    console.log("");
-    console.log("====================================");
-    console.log("DAWATI RESEARCH SEARCH REQUEST");
-    console.log("====================================");
+if (!title || !idea || !fieldOfStudy) {
 
-    console.log("Title:", title);
+    return res.status(400).json({
 
-    console.log("Idea:", idea);
+        success: false,
 
-    console.log("Field of Study:", fieldOfStudy);
+        message:
+            "Research title, idea and field of study are required"
 
-    console.log("Level of Study:", levelOfStudy);
-
-    console.log("Objective 1:", objective1);
-
-    console.log("Objective 2:", objective2);
-
-    console.log("Objective 3:", objective3);
-
-    console.log("Objective 4:", objective4);
+    });
+}
 
 
-    // =================================
-    // TEMPORARY RESPONSE
-    // REAL ACADEMIC SEARCH COMES NEXT
-    // =================================
+// =================================
+// DISPLAY REQUEST ON SERVER
+// =================================
+
+console.log("");
+console.log("====================================");
+console.log("DAWATI RESEARCH SEARCH REQUEST");
+console.log("====================================");
+
+console.log("Title:", title);
+console.log("Idea:", idea);
+console.log("Field of Study:", fieldOfStudy);
+console.log("Level of Study:", levelOfStudy);
+console.log("Objective 1:", objective1);
+console.log("Objective 2:", objective2);
+console.log("Objective 3:", objective3);
+console.log("Objective 4:", objective4);
+console.log("Search Text:", searchText);
+
+
 // =================================
 // CREATE RESEARCH OBJECT
 // =================================
@@ -89,8 +80,9 @@ const research = {
     objective1,
     objective2,
     objective3,
-    objective4
+    objective4,
 
+    searchText
 };
 
 
@@ -99,11 +91,9 @@ const research = {
 // =================================
 
 const sources =
-        await searchAcademicSources(
-                research
-        );
-
-
+    await searchAcademicSources(
+        research
+    );
 // =================================
 // RESPONSE
 // =================================

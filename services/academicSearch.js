@@ -19,11 +19,18 @@ async function searchAcademicSources(research) {
     // BUILD SEARCH QUERY
     // =================================
 
-    const searchQuery = `
-        ${research.title}
-        ${research.idea}
-        ${research.fieldOfStudy}
-    `;
+  const searchQuery = `
+    ${research.searchText || ""}
+    ${research.title || ""}
+    ${research.idea || ""}
+    ${research.fieldOfStudy || ""}
+    ${research.objective1 || ""}
+    ${research.objective2 || ""}
+    ${research.objective3 || ""}
+    ${research.objective4 || ""}
+`
+    .replace(/\s+/g, " ")
+    .trim();
 
 
     console.log(
@@ -31,6 +38,13 @@ async function searchAcademicSources(research) {
         searchQuery
     );
 
+    
+console.log("");
+console.log("=================================");
+console.log("DAWATI ACADEMIC SEARCH QUERY");
+console.log("=================================");
+console.log(searchQuery);
+console.log("=================================");
 
     // =================================
     // TEMPORARY SOURCES
